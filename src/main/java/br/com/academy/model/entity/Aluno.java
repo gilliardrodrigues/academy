@@ -13,9 +13,7 @@ import javax.validation.constraints.Size;
 import br.com.academy.enums.Curso;
 import br.com.academy.enums.Status;
 import br.com.academy.enums.Turno;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 
 @Entity
 @Data
@@ -23,7 +21,6 @@ public class Aluno {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Setter(AccessLevel.NONE)
 	private Integer id;
 	
 	@Size(min = 5, max = 50, message = "O nome deve conter no mínimo 5 caracteres!")

@@ -25,7 +25,7 @@
 					<th scope="col">Ação</th>
 				</thead>
 				<tbody>
-					<tr scope="row" th:each="obj : ${alunos}">
+					<tr scope="row" th:each="obj : ${alunosCancelados}">
 						<td th:text="${obj.nome}"></td>
 						<td th:text="${obj.matricula}"></td>
 						<td th:text="${obj.curso.descricao}"></td>
