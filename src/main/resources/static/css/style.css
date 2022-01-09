@@ -84,6 +84,10 @@ a.botao-nav:hover {
 	padding: 15px;
 }
 
+.botao-imagem-filtro {
+	border: none;
+}
+
 /* Responsividade */
 @media screen and (max-width: 667px){
 	nav {
