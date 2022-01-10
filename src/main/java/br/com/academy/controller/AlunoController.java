@@ -1,5 +1,7 @@
 package br.com.academy.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,7 @@ public class AlunoController
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("aluno/pesqAluno");
 		mv.addObject("alunos", repositorio.findAll());
+		mv.addObject("aluno", new Aluno());
 		return mv;
 	}
 	
@@ -66,6 +69,7 @@ public class AlunoController
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("aluno/filtrosAluno");
+		mv.addObject("aluno", new Aluno());
 		return mv;
 	}
 	
@@ -92,6 +96,25 @@ public class AlunoController
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("aluno/pesqAluno");
 		mv.addObject("alunos", repositorio.buscaAlunosFiltradoPeloStatus(status));
+		mv.addObject("aluno", new Aluno());
+		return mv;
+	}
+	
+	@PostMapping("pesquisarAluno")
+	public ModelAndView pesquisarAluno(@RequestParam(required=false) String nome)
+	{
+		ModelAndView mv = new ModelAndView();
+		List<Aluno> listaAlunos;
+		if(nome == null || nome.trim().isEmpty()) {
+			listaAlunos = repositorio.findAll();
+		}
+		else
+		{
+			listaAlunos = repositorio.findByNomeContainingIgnoreCase(nome);
+		}
+		mv.addObject("alunos", listaAlunos);
+		mv.setViewName("aluno/pesqAluno");
+		mv.addObject("aluno", new Aluno());
 		return mv;
 	}
 	

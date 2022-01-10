@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="author" content="Gilliard G. Rodrigues">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Buscar alunos</title>
+		<title>Encontrar aluno</title>
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
@@ -13,14 +13,14 @@
 	<body>
 		<div th:replace="fragmentos/fragmentos :: cabecalho"></div>
 		<div class="container" style="margin-top: 50px">
-			<h4><i class="fas fa-search"></i> Buscar alunos</h4>
+			<h4><i class="fas fa-search"></i> Encontrar aluno</h4>
 			<hr>
 			<br>
-			<form method="post">
-				<div class="input-group col-6 offset-3">
-					<input class="form-control" placeholder="Busque pelo nome de um aluno...">
+			<form method="post" action="pesquisarAluno" th:object="${aluno}" >
+				<div class="input-group col-4">
+					<input type="text" th:field="*{nome}" class="form-control" placeholder="Insira o nome de um aluno...">
 					<div class="input-group-append">
-						<button type="submit" class="btn btn-outline-secondary">Buscar</button>
+						<button type="submit" class="btn btn-outline-secondary">Pesquisar</button>
 					</div>
 				</div>
 			</form>
@@ -73,6 +73,9 @@
 				</form>
 			</div>
 		</div>
+		<br>
+		<br>
+		<div th:replace="fragmentos/fragmentos :: rodape"></div>
 		<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 		<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	</body>
