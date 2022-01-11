@@ -1,6 +1,6 @@
 package br.com.academy.exceptions;
 
-public class EmailExistsException extends Exception
+public class EmailExistsException extends RuntimeException
 {
 
 	public EmailExistsException(String message)

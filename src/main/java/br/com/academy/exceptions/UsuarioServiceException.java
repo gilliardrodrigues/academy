@@ -1,6 +1,6 @@
 package br.com.academy.exceptions;
 
-public class UsuarioServiceException extends Exception
+public class UsuarioServiceException extends RuntimeException
 {
 
 	public UsuarioServiceException(String message)

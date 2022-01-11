@@ -10,9 +10,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import br.com.academy.enums.Curso;
-import br.com.academy.enums.Status;
-import br.com.academy.enums.Turno;
+import br.com.academy.model.enums.Curso;
+import br.com.academy.model.enums.Status;
+import br.com.academy.model.enums.Turno;
 import lombok.Data;
 
 @Entity

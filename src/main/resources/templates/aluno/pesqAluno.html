@@ -16,8 +16,8 @@
 			<h4><i class="fas fa-users"></i> Lista de alunos</h4>
 			<hr>
 			<br>
-			<form method="post" action="pesquisarAluno" th:object="${aluno}">
-				<div class="input-group col-4">
+			<form method="post" action="pesqAluno" th:object="${aluno}">
+				<div id="inputGroupPesquisa2" class="input-group col-4">
 					<input type="text" th:field="*{nome}" class="form-control" placeholder="Insira o nome de um aluno...">
 					<div class="input-group-append">
 						<button type="submit" class="btn btn-outline-secondary">Pesquisar</button>
@@ -26,7 +26,7 @@
 			</form>
 			<br>
 			<hr>
-			<table class="table table-bordered table-hover text-center" >
+			<table class="table table-bordered table-hover text-center table-responsive-md" >
 				<thead>
 					<th scope="col">Nome</th>
 					<th scope="col">Matrícula</th>
@@ -49,10 +49,15 @@
 					</tr>
 				</tbody>
 			</table>
+			<div th:if="${#lists.isEmpty(alunos)}">
+			  <p style="text-align: center;">Nenhum resultado foi encontrado.</p>
+			</div>
 		</div>
 		<br>
 		<br>
-		<div th:replace="fragmentos/fragmentos :: rodape"></div>
+		<div id="footer-pesq-parent">
+			<div th:replace="fragmentos/fragmentos :: rodape"></div>
+		</div>
 		<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 		<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	</body>

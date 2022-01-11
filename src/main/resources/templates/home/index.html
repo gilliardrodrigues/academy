@@ -23,7 +23,7 @@
 						<button class="botao" onclick="location.href='/cadAluno'" type="button">CADASTRAR ALUNO</button>
 					</div>
 					<div class="wm">
-						<button class="botao" onclick="location.href='/filtrosAluno'" type="button">ENCONTRAR ALUNO</button>
+						<button class="botao" onclick="location.href='/filtrarAlunos'" type="button">FILTRAR ALUNOS</button>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -39,7 +39,7 @@
 							<span>&times;</span>
 						</button>
 					</div>
-					<form method="post" action="pesquisarAluno" th:object="${aluno}">
+					<form method="post" action="pesqAluno" th:object="${aluno}">
 						<div class="modal-body">
 							<input type="text" th:field="*{nome}" class="form-control" placeholder="Insira um nome...">
 						</div>

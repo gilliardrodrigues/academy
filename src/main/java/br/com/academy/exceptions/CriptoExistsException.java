@@ -1,6 +1,6 @@
 package br.com.academy.exceptions;
 
-public class CriptoExistsException extends Exception
+public class CriptoExistsException extends RuntimeException
 {
 
 	public CriptoExistsException(String message)

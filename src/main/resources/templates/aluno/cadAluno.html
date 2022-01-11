@@ -34,7 +34,7 @@
 						<label th:for="curso">Curso:</label>
 						<select class="form-control" th:field="*{curso}">
 							<option th:value="${null}" th:text="${'Selecione uma opção...'}"></option>
-							<option th:each="curso : ${T(br.com.academy.enums.Curso).values()}"
+							<option th:each="curso : ${T(br.com.academy.model.enums.Curso).values()}"
 									th:value="${curso}" th:text="${curso.descricao}">
 							</option>
 						</select>
@@ -58,7 +58,7 @@
 						<label th:for="turno">Turno:</label>
 						<select class="form-control" th:field="*{turno}">
 							<option th:value="${null}" th:text="${'Selecione uma opção...'}"></option>
-							<option th:each="turno : ${T(br.com.academy.enums.Turno).values()}"
+							<option th:each="turno : ${T(br.com.academy.model.enums.Turno).values()}"
 									th:value="${turno}" th:text="${turno.descricao}">
 							</option>
 						</select>
@@ -72,7 +72,7 @@
 						<label th:for="status">Status:</label>
 						<select class="form-control" th:field="*{status}"> <!-- O T é pra se referir a uma instância do Enum -->
 							<option th:value="${null}" th:text="${'Selecione uma opção...'}"></option>
-							<option th:each="status : ${T(br.com.academy.enums.Status).values()}" 
+							<option th:each="status : ${T(br.com.academy.model.enums.Status).values()}" 
 									th:value="${status}" th:text="${status.descricao}">
 							</option>
 						</select>
@@ -82,7 +82,7 @@
 					</div>	
 				</div>
 				<div class="row">
-					<button type="submit" class="btn btn-success offset-md-5">SALVAR</button>
+					<button id="botao-salvar-aluno" type="submit" class="btn btn-success offset-md-5">SALVAR</button>
 					&nbsp;&nbsp;&nbsp;
 					<a class="btn btn-outline-danger" th:href="@{/index}">VOLTAR</a>
 				</div>

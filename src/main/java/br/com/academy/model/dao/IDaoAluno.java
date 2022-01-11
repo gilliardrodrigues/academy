@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import br.com.academy.enums.Status;
 import br.com.academy.model.entity.Aluno;
+import br.com.academy.model.enums.Status;
 
 public interface IDaoAluno extends JpaRepository<Aluno, Integer>
 {

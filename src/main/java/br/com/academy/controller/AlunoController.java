@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.academy.enums.Status;
 import br.com.academy.model.dao.IDaoAluno;
 import br.com.academy.model.entity.Aluno;
+import br.com.academy.model.enums.Status;
 
 @Controller
 public class AlunoController
@@ -64,11 +64,11 @@ public class AlunoController
 		return "redirect:/pesqAluno";
 	}
 	
-	@GetMapping("/filtrosAluno")
+	@GetMapping("/filtrarAlunos")
 	public ModelAndView retornaViewFiltroAlunos()
 	{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("aluno/filtrosAluno");
+		mv.setViewName("aluno/filtrarAlunos");
 		mv.addObject("aluno", new Aluno());
 		return mv;
 	}
@@ -100,7 +100,7 @@ public class AlunoController
 		return mv;
 	}
 	
-	@PostMapping("pesquisarAluno")
+	@PostMapping("pesqAluno")
 	public ModelAndView pesquisarAluno(@RequestParam(required=false) String nome)
 	{
 		ModelAndView mv = new ModelAndView();

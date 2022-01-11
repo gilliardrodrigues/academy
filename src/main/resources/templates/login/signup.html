@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="author" content="Gilliard G. Rodrigues">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Projeto Academy – Login</title>
+		<link rel="stylesheet" href="css/login.css">
+		<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+		<script src="https://kit.fontawesome.com/006642858d.js"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="loginForm">
+			<div class="container">
+				<div class="main-div">
+					<div class="texto-header">
+						<div class="alert alert-danger" role="alert" th:if="${emailExistsExceptionMessage}">
+							<strong th:text="${emailExistsExceptionMessage}"></strong>
+						</div>
+						<h2><img style="margin-bottom: 5px;" src="/img/logo-login.png" width="47px"> Cadastro de usuário</h2>
+						<br>
+						<p>Preencha os campos abaixo para se cadastrar no sistema:</p>
+					</div>
+					<form method="post" action="signup" th:object="${usuario}">
+						<div class="form-group">
+							<input type="text" class="form-control" th:field="*{nome}" placeholder="Insira seu nome" style="text-align: center"
+							th:classappend="${#fields.hasErrors('nome')} ? is-invalid">
+							<div class="invalid-feedback">
+								<span th:errors="*{nome}"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" th:field="*{nomeUsuario}" placeholder="Defina um nome de usuário" style="text-align: center" 
+							th:classappend="${#fields.hasErrors('nomeUsuario')} ? is-invalid">
+							<div class="invalid-feedback">
+								<span th:errors="*{nomeUsuario}"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="email" class="form-control" th:field="*{email}" placeholder="Insira seu e-mail" style="text-align: center"
+							th:classappend="${#fields.hasErrors('email')} ? is-invalid">
+							<div class="invalid-feedback">
+								<span th:errors="*{email}"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" th:field="*{senha}" placeholder="Defina sua senha" style="text-align: center"
+							th:classappend="${#fields.hasErrors('senha')} ? is-invalid">
+							<div class="invalid-feedback">
+								<span th:errors="*{senha}"></span>
+							</div>
+						</div>
+						
+						<button type="submit" class="btn btn-primary">Cadastrar</button>
+						<button type="button" onclick="location.href='/'" class="btn btn-info">Voltar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

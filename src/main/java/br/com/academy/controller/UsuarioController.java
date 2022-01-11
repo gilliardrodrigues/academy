@@ -41,44 +41,58 @@ public class UsuarioController
 		mv.addObject("usuario", new Usuario());
 		return mv;
 	}
-	@GetMapping("/cadastro")
+	@GetMapping("/signup")
 	public ModelAndView telaCadastro()
 	{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("login/cadastro");
+		mv.setViewName("login/signup");
 		mv.addObject("usuario", new Usuario());
 		return mv;
 	}
 	
-	@PostMapping("cadastrarUsuario")
-	public ModelAndView signup(Usuario usuario)
+	@PostMapping("signup")
+	public ModelAndView signup(@Valid Usuario usuario, BindingResult br)
 	{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/");
-		try
+		if(br.hasErrors())
 		{
-			service.salvar(usuario);
+			mv.setViewName("login/signup");
+			mv.addObject("usuario");
 		}
-		catch (Exception e)
+		else
 		{
-			e.printStackTrace();
+			mv.setViewName("redirect:/");
+			try
+			{
+				service.salvar(usuario);
+			}
+			catch (Exception e)
+			{
+				mv.setViewName("login/signup");
+				mv.addObject("usuario");
+				mv.addObject("emailExistsExceptionMessage", e.getMessage());
+			}
 		}
+		
 		return mv;
 	}
 	
-	@PostMapping("efetuarLogin")
+	@PostMapping("login")
 	public ModelAndView login(@Valid Usuario usuario, BindingResult br, HttpSession session) throws NoSuchAlgorithmException, UsuarioServiceException
 	{
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("usuario", new Usuario());
 		if(br.hasErrors())
 		{
 			mv.setViewName("login/login");
+			mv.addObject("usuario");
 		}
 		Usuario usuarioEncontrado = service.autenticar(usuario.getNomeUsuario(), Util.criptografarSenha(usuario.getSenha()));
-		if(usuarioEncontrado == null)
+		if(usuarioEncontrado == null )
 		{
-			mv.addObject("msg", "Usuário não encontrado! Tente novamente.");
+			if(!(br.hasFieldErrors("nomeUsuario") || br.hasFieldErrors("senha")))
+			{
+				mv.addObject("msg", "Usuário não encontrado! Tente novamente.");
+			}
 		}
 		else
 		{

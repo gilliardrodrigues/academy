@@ -87,6 +87,12 @@ a.botao-nav:hover {
 .botao-imagem-filtro {
 	border: none;
 }
+#footer-pesq-parent footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
 
 /* Responsividade */
 @media screen and (max-width: 667px){
@@ -100,5 +106,21 @@ a.botao-nav:hover {
 		width: 100%;
 		margin-top: 7px;
 	}
-	
+	#botao-salvar-aluno {
+		margin-left: 15px;
+	}
+	#cards {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		text-align: center;
+	}
+	.card {
+		margin-top: 7px;
+	}
+	#inputGroupPesquisa1, #inputGroupPesquisa2 {
+		max-width: 100%;
+	}
 }

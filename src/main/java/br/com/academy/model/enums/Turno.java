@@ -1,4 +1,4 @@
-package br.com.academy.enums;
+package br.com.academy.model.enums;
 
 public enum Turno
 {

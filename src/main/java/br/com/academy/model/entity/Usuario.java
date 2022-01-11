@@ -21,7 +21,7 @@ public class Usuario
 	@NotBlank(message = "Campo obrigatório não preenchido!")
 	private String nome;
 	
-	@Size(min = 5, max = 20, message = "O nome de usuário deve conter de 5 a 20 caracteres!")
+	@Size(min = 5, max = 20, message = "O usuário deve conter de 5 a 20 caracteres!")
 	@NotBlank(message = "Campo obrigatório não preenchido!")
 	private String nomeUsuario;
 	

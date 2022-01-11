@@ -50,3 +50,10 @@
 	height: 40px;
 	width: 50%;
 }
+
+/* Responsividade */
+@media screen and (max-width: 667px){
+	.main-div {
+		max-width: 90%;
+	}	
+}
