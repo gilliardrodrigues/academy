@@ -14,6 +14,7 @@ import lombok.Data;
 @Data
 public class Usuario
 {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;

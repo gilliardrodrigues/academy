@@ -15,7 +15,10 @@
 			<div class="container">
 				<div class="main-div">
 					<div class="texto-header">
-						<div class="alert alert-danger" role="alert" th:if="${msg}">
+						<!-- <div class="alert alert-danger" role="alert" th:if="${msg}">
+							<strong th:text="${msg}"></strong>
+						</div> -->
+						<div class="alert alert-danger" role="alert" th:if="${param.error}">
 							<strong th:text="${msg}"></strong>
 						</div>
 						<h2><img style="margin-bottom: 5px;" src="/img/logo-login.png" width="47px">Entrar</h2>

@@ -26,7 +26,7 @@
 					<a class="botao-nav nav-item nav-link text-reset" th:href="@{/cadAluno}"><i class="fas fa-user-graduate"></i> Cadastrar aluno</a>
 					<a data-toggle="modal" data-target="#modalPesquisa" class="botao-nav nav-item nav-link text-reset" th:if="${home}"><i class="fas fa-search"></i> Pesquisar</a>
 					<a class="botao-nav nav-item nav-link text-reset" th:href="@{/pesqAluno}"><i class="fas fa-users"></i> Alunos</a>
-					<form action="efetuarLogout" method="post">
+					<form action="logout" method="post">
 						<button type="submit" class="nav-item nav-link btn-danger text-reset"><i class="fas fa-times"></i> Sair</button>
 					</form>
 				</div>

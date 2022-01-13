@@ -95,8 +95,11 @@ a.botao-nav:hover {
 .foto {
 	max-height: 75px;
 	max-width: 75px;
+	border-radius: 50px;
 }
-
+td {
+	vertical-align:middle !important;
+}
 /* Responsividade */
 @media screen and (max-width: 667px){
 	nav {

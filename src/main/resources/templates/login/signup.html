@@ -22,7 +22,7 @@
 						<br>
 						<p>Preencha os campos abaixo para se cadastrar no sistema:</p>
 					</div>
-					<form method="post" action="signup" th:object="${usuario}">
+					<form method="post" action="cadastroUsuario" th:object="${usuario}">
 						<div class="form-group">
 							<input type="text" class="form-control" th:field="*{nome}" placeholder="Insira seu nome" style="text-align: center"
 							th:classappend="${#fields.hasErrors('nome')} ? is-invalid">

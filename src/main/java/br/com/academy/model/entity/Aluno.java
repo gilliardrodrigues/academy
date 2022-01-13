@@ -2,13 +2,13 @@ package br.com.academy.model.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
@@ -31,8 +31,8 @@ public class Aluno {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-	@Lob
-	private byte[] foto;
+	@Column(columnDefinition = "TEXT")
+	private String foto;
 	
 	@Size(min = 5, max = 50, message = "O nome deve conter no mínimo 5 caracteres!")
 	@NotBlank(message = "Campo obrigatório não preenchido!")

@@ -23,17 +23,21 @@
 				<div class="row">
 					<div class="col-md-6 form-group offset-md-3">
 						<label th:for="foto">Foto:</label>
-						<input class="form-control" th:name="foto" type="file" accept="image/png, image/jpeg">
-						<!-- <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('foto')}">
-							<label class="validation-message" th:errors="*{foto}"></label>
-						</div> -->
+						<div class="custom-file mb-2">
+							<input type="file" class="custom-file-input" th:name="arquivoFoto" accept="image/png, image/jpeg">
+							<label class="custom-file-label" for="foto">Escolha uma imagem</label>
+							<div class="alert alert-danger mt-1" role="alert" th:if="${#fields.hasErrors('global')}">
+								<label class="validation-message" th:errors="*{global}"></label>
+							</div>
+						</div>
+						
 					</div>	
 				</div>
 				<div class="row">
 					<div class="col-md-6 form-group offset-md-3">
 						<label th:for="nome">Nome:</label>
 						<input class="form-control" placeholder="Ex.: João da Silva" th:field="*{nome}">
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('nome')}">
+						<div class="alert alert-danger mt-1" role="alert" th:if="${#fields.hasErrors('nome')}">
 							<label class="validation-message" th:errors="*{nome}"></label>
 						</div>
 					</div>	
@@ -47,7 +51,7 @@
 									th:value="${sexo}" th:text="${sexo.descricao}">
 							</option>
 						</select>
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('sexo')}">
+						<div class="alert alert-danger mt-1" role="alert" th:if="${#fields.hasErrors('sexo')}">
 							<label class="validation-message" th:errors="*{sexo}"></label>
 						</div>
 					</div>	
@@ -55,8 +59,8 @@
 				<div class="row">
 					<div class="col-md-6 form-group offset-md-3">
 						<label th:for="dataNascimento">Data de nascimento:</label>
-						<input class="form-control" placeholder="dd/MM/yyyy" th:field="*{dataNascimento}" type="date">
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('dataNascimento')}">
+						<input class="form-control" placeholder="dd/MM/yyyy" th:field="*{dataNascimento}" type="date" max="9999-12-31">
+						<div class="alert alert-danger mt-1" role="alert" th:if="${#fields.hasErrors('dataNascimento')}">
 							<label class="validation-message" th:errors="*{dataNascimento}"></label>
 						</div>
 					</div>	
@@ -70,7 +74,7 @@
 									th:value="${curso}" th:text="${curso.descricao}">
 							</option>
 						</select>
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('curso')}">
+						<div class="alert alert-danger mt-1" role="alert" th:if="${#fields.hasErrors('curso')}">
 							<label class="validation-message" th:errors="*{curso}"></label>
 						</div>
 					</div>	
@@ -79,7 +83,7 @@
 					<div class="col-md-6 form-group offset-md-3">
 						<label th:for="matricula">Matrícula:</label>
 						<input class="form-control" th:field="*{matricula}" th:readonly="${telaEdicao}">
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('matricula')}">
+						<div class="alert alert-danger mt-1" role="alert" th:if="${#fields.hasErrors('matricula')}">
 							<label class="validation-message" th:errors="*{matricula}"></label>
 						</div>
 						<button type="button" class="btn btn-dark" style="margin-top: 10px" onclick="gerarMatricula();">Gerar</button>
@@ -94,7 +98,7 @@
 									th:value="${turno}" th:text="${turno.descricao}">
 							</option>
 						</select>
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('turno')}">
+						<div class="alert alert-danger mt-1" role="alert" th:if="${#fields.hasErrors('turno')}">
 							<label class="validation-message" th:errors="*{turno}"></label>
 						</div>
 					</div>	
@@ -108,7 +112,7 @@
 									th:value="${status}" th:text="${status.descricao}">
 							</option>
 						</select>
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('status')}">
+						<div class="alert alert-danger mt-1" role="alert" th:if="${#fields.hasErrors('status')}">
 							<label class="validation-message" th:errors="*{status}"></label>
 						</div>
 					</div>	

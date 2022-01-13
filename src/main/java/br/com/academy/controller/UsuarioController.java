@@ -50,7 +50,7 @@ public class UsuarioController
 		return mv;
 	}
 	
-	@PostMapping("signup")
+	@PostMapping("cadastroUsuario")
 	public ModelAndView signup(@Valid Usuario usuario, BindingResult br)
 	{
 		ModelAndView mv = new ModelAndView();
@@ -91,7 +91,7 @@ public class UsuarioController
 		{
 			if(!(br.hasFieldErrors("nomeUsuario") || br.hasFieldErrors("senha")))
 			{
-				mv.addObject("msg", "Usuário não encontrado! Tente novamente.");
+				mv.addObject("msg", "Usuário ou senha inválidos! Tente novamente.");
 			}
 		}
 		else
@@ -102,7 +102,7 @@ public class UsuarioController
 		return mv;
 	}
 	
-	@PostMapping("efetuarLogout")
+	@PostMapping("logout")
 	public ModelAndView logout(HttpSession session)
 	{
 		session.invalidate();

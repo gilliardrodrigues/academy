@@ -40,7 +40,8 @@
 				</thead>
 				<tbody>
 					<tr scope="row" th:each="obj : ${alunos}">
-						<td width="5%"><img th:src="|/imagem/${obj.id}|" class="foto"></td>
+						<td width="5%"><img class="foto" th:src="*{'data:image/jpg;base64,'+{obj.foto}}" style="width: 100px;height: 100px;"></td>
+						<!-- <td width="5%"><img th:src="|/imagem/${obj.id}|" class="foto"></td> -->
 						<td width="20%" th:text="${obj.nome}"></td>
 						<td width="5%" th:text="${obj.sexo.descricao}"></td>
 						<td width="10%" th:text="${#dates.format(obj.dataNascimento, 'dd/MM/yyyy')}"></td>
