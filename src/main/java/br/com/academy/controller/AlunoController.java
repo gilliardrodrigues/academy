@@ -1,16 +1,25 @@
 package br.com.academy.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.academy.model.dao.IDaoAluno;
@@ -72,10 +81,24 @@ public class AlunoController
 		mv.addObject("aluno", new Aluno());
 		return mv;
 	}
-	
+	@InitBinder
+	protected void initBinder(HttpServletRequest request,
+			ServletRequestDataBinder binder) throws ServletException {
+				binder.registerCustomEditor(byte[].class,
+					new ByteArrayMultipartFileEditor());
+		}
+
 	@PostMapping("salvarAluno") /* Anotação para enviar dados */
-	public ModelAndView salvarAluno(@Valid Aluno aluno, BindingResult br)
+	public ModelAndView salvarAluno(@Valid Aluno aluno, @RequestParam("foto") MultipartFile foto, BindingResult br)
 	{
+		try
+		{
+			aluno.setFoto(foto.getBytes());
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 		ModelAndView mv = new ModelAndView();
 		if(br.hasErrors())
 		{
@@ -88,6 +111,16 @@ public class AlunoController
 			repositorio.save(aluno);
 		}
 		return mv;
+	}
+	
+	@GetMapping("/imagem/{id}")
+	@ResponseBody
+	@Transactional
+	public byte[] exibirImagem(@PathVariable("id") Integer id)
+	{
+		Aluno aluno = repositorio.getById(id);
+		System.out.println("OLHA " + aluno);
+		return aluno.getFoto();
 	}
 	
 	@PostMapping("filtrarAlunos")

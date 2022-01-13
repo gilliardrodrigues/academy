@@ -18,14 +18,46 @@
 			<h4 th:if="${telaEdicao}"><i class="fas fa-edit"></i> Alterar aluno</h4>
 			<hr>
 			<br>
-			<form method="post" action="/salvarAluno" th:object="${aluno}">
+			<form method="post" action="/salvarAluno" th:object="${aluno}" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}">
+				<div class="row">
+					<div class="col-md-6 form-group offset-md-3">
+						<label th:for="foto">Foto:</label>
+						<input class="form-control" th:name="foto" type="file" accept="image/png, image/jpeg">
+						<!-- <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('foto')}">
+							<label class="validation-message" th:errors="*{foto}"></label>
+						</div> -->
+					</div>	
+				</div>
 				<div class="row">
 					<div class="col-md-6 form-group offset-md-3">
 						<label th:for="nome">Nome:</label>
 						<input class="form-control" placeholder="Ex.: João da Silva" th:field="*{nome}">
 						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('nome')}">
 							<label class="validation-message" th:errors="*{nome}"></label>
+						</div>
+					</div>	
+				</div>
+				<div class="row">
+					<div class="col-md-6 form-group offset-md-3">
+						<label th:for="sexo">Sexo:</label>
+						<select class="form-control" th:field="*{sexo}">
+							<option th:value="${null}" th:text="${'Selecione uma opção...'}"></option>
+							<option th:each="sexo : ${T(br.com.academy.model.enums.Sexo).values()}"
+									th:value="${sexo}" th:text="${sexo.descricao}">
+							</option>
+						</select>
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('sexo')}">
+							<label class="validation-message" th:errors="*{sexo}"></label>
+						</div>
+					</div>	
+				</div>
+				<div class="row">
+					<div class="col-md-6 form-group offset-md-3">
+						<label th:for="dataNascimento">Data de nascimento:</label>
+						<input class="form-control" placeholder="dd/MM/yyyy" th:field="*{dataNascimento}" type="date">
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('dataNascimento')}">
+							<label class="validation-message" th:errors="*{dataNascimento}"></label>
 						</div>
 					</div>	
 				</div>

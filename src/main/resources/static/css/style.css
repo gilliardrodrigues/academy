@@ -92,7 +92,10 @@ a.botao-nav:hover {
 	bottom: 0;
 	width: 100%;
 }
-
+.foto {
+	max-height: 75px;
+	max-width: 75px;
+}
 
 /* Responsividade */
 @media screen and (max-width: 667px){

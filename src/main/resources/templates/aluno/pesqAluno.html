@@ -28,7 +28,10 @@
 			<hr>
 			<table class="table table-bordered table-hover text-center table-responsive-md" >
 				<thead>
+					<th scope="col">Foto</th>
 					<th scope="col">Nome</th>
+					<th scope="col">Sexo</th>
+					<th scope="col">Nascido em</th>
 					<th scope="col">Matrícula</th>
 					<th scope="col">Curso</th>
 					<th scope="col">Turno</th>
@@ -37,12 +40,15 @@
 				</thead>
 				<tbody>
 					<tr scope="row" th:each="obj : ${alunos}">
-						<td th:text="${obj.nome}"></td>
-						<td th:text="${obj.matricula}"></td>
-						<td th:text="${obj.curso.descricao}"></td>
-						<td th:text="${obj.turno.descricao}"></td>
-						<td th:text="${obj.status.descricao}"></td>
-						<td>
+						<td width="5%"><img th:src="|/imagem/${obj.id}|" class="foto"></td>
+						<td width="20%" th:text="${obj.nome}"></td>
+						<td width="5%" th:text="${obj.sexo.descricao}"></td>
+						<td width="10%" th:text="${#dates.format(obj.dataNascimento, 'dd/MM/yyyy')}"></td>
+						<td width="5%" th:text="${obj.matricula}"></td>
+						<td width="15%" th:text="${obj.curso.descricao}"></td>
+						<td width="5%" th:text="${obj.turno.descricao}"></td>
+						<td width="5%" th:text="${obj.status.descricao}"></td>
+						<td width="30%">
 							<a class="btn btn-primary" th:href="@{cadAluno/{id}(id=${obj.id})}"><i class="fas fa-edit"></i>Editar</a>
 							<a class="btn btn-danger" th:href="@{rmAluno/{id}(id=${obj.id})}"><i class="fas fa-trash"></i>Remover</a>
 						</td>
