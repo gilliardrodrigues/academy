@@ -15,30 +15,22 @@
 			<div class="container">
 				<div class="main-div">
 					<div class="texto-header">
-						<!-- <div class="alert alert-danger" role="alert" th:if="${msg}">
-							<strong th:text="${msg}"></strong>
-						</div> -->
 						<div class="alert alert-danger" role="alert" th:if="${param.error}">
-							<strong th:text="${msg}"></strong>
+							Usuário ou senha inválido.
+						</div>
+						<div class="alert alert-danger" role="alert" th:if="${param.logout}">
+							Você saiu do sistema.
 						</div>
 						<h2><img style="margin-bottom: 5px;" src="/img/logo-login.png" width="47px">Entrar</h2>
 						<br>
 						<p>Insira suas credenciais para efetuar login no sistema:</p>
 					</div>
-					<form method="post" action="login" th:object="${usuario}">
+					<form method="post" th:action="@{/login}">
 						<div class="form-group">
-							<input type="text" th:field="*{nomeUsuario}"  class="form-control" placeholder="Seu usuário" style="text-align: center"
-							th:classappend="${#fields.hasErrors('nomeUsuario')} ? is-invalid">
-							<div class="invalid-feedback">
-								<span th:errors="*{nomeUsuario}"></span>
-							</div>
+							<input type="text" id="username" name="username" class="form-control" placeholder="Seu usuário" style="text-align: center">
 						</div>
 						<div class="form-group">
-							<input type="password" th:field="*{senha}" class="form-control" placeholder="Sua senha" style="text-align: center"
-							th:classappend="${#fields.hasErrors('senha')} ? is-invalid">
-							<div class="invalid-feedback">
-								<span th:errors="*{senha}"></span>
-							</div>
+							<input type="password" name="password" class="form-control" placeholder="Sua senha" style="text-align: center">
 						</div>
 						<div class="cadastro">
 							<p>Não tem cadastro? <a th:href="@{/signup}">clique aqui.</a></p>

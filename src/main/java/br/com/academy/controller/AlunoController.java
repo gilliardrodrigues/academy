@@ -83,7 +83,6 @@ public class AlunoController
 		try
 		{
 			aluno.setFoto(Util.converteImagemParaString(arquivo));
-			System.out.println("Olha aqui: " + aluno.getFoto());
 		}
 		catch(Exception e)
 		{

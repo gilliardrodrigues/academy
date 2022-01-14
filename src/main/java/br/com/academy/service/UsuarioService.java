@@ -1,44 +1,45 @@
 package br.com.academy.service;
 
-import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Service;
 
-import br.com.academy.exceptions.CriptoExistsException;
 import br.com.academy.exceptions.EmailExistsException;
-import br.com.academy.exceptions.UsuarioServiceException;
+import br.com.academy.exceptions.UsernameExistsException;
 import br.com.academy.model.dao.IDaoUsuario;
 import br.com.academy.model.entity.Usuario;
-import br.com.academy.util.Util;
+import lombok.RequiredArgsConstructor;
 
 @Service
-public class UsuarioService
+@RequiredArgsConstructor
+public class UsuarioService implements UserDetailsService
 {
-	@Autowired
-	IDaoUsuario repositorio;
+	
+	private final IDaoUsuario repositorio;
 	
 	public void salvar(Usuario usuario) throws Exception
 	{
-		try
+		if(repositorio.findByUsername(usuario.getUsername()) != null)
 		{
-			if(repositorio.findByEmail(usuario.getEmail()) != null)
-			{
-				throw new EmailExistsException("Já existe um usuário cadastro para o e-mail: " + usuario.getEmail());
-			}
-			usuario.setSenha(Util.criptografarSenha(usuario.getSenha()));
+			throw new UsernameExistsException("Esse nome de usuário já está sendo utilizado por outra pessoa, escolha outro!");
 		}
-		catch(NoSuchAlgorithmException e)
+		if(repositorio.findByEmail(usuario.getEmail()) != null)
 		{
-			throw new CriptoExistsException("Erro na criptografia da senha!");
+			throw new EmailExistsException("Já existe um usuário cadastro para o e-mail: " + usuario.getEmail());
 		}
+		usuario.setPassword(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(usuario.getPassword()));
+		usuario.setRoles("ROLE_ADMIN,ROLE_USER");
 		repositorio.save(usuario);
 	}
-	
-	public Usuario autenticar(String nomeUsuario, String senha) throws UsuarioServiceException
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
 	{
-		Usuario usuarioEncontrado = repositorio.findByNomeUsuarioAndSenha(nomeUsuario, senha);
-		return usuarioEncontrado;
+		return Optional.ofNullable(repositorio.findByUsername(username)).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 	}
 	
 }

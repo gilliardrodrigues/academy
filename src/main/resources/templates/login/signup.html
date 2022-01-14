@@ -15,8 +15,8 @@
 			<div class="container">
 				<div class="main-div">
 					<div class="texto-header">
-						<div class="alert alert-danger" role="alert" th:if="${emailExistsExceptionMessage}">
-							<strong th:text="${emailExistsExceptionMessage}"></strong>
+						<div class="alert alert-danger" role="alert" th:if="${signupExceptionMessage}">
+							<strong th:text="${signupExceptionMessage}"></strong>
 						</div>
 						<h2><img style="margin-bottom: 5px;" src="/img/logo-login.png" width="47px"> Cadastro de usuário</h2>
 						<br>
@@ -31,11 +31,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" th:field="*{nomeUsuario}" placeholder="Defina um nome de usuário" style="text-align: center" 
-							th:classappend="${#fields.hasErrors('nomeUsuario')} ? is-invalid">
-							<div class="invalid-feedback">
-								<span th:errors="*{nomeUsuario}"></span>
-							</div>
+							<input type="text" class="form-control" th:field="*{username}" placeholder="Defina um nome de usuário" style="text-align: center">
 						</div>
 						<div class="form-group">
 							<input type="email" class="form-control" th:field="*{email}" placeholder="Insira seu e-mail" style="text-align: center"
@@ -45,15 +41,11 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" th:field="*{senha}" placeholder="Defina sua senha" style="text-align: center"
-							th:classappend="${#fields.hasErrors('senha')} ? is-invalid">
-							<div class="invalid-feedback">
-								<span th:errors="*{senha}"></span>
-							</div>
+							<input type="password" class="form-control" th:field="*{password}" placeholder="Defina sua senha" style="text-align: center">
 						</div>
 						
 						<button type="submit" class="btn btn-primary">Cadastrar</button>
-						<button type="button" onclick="location.href='/'" class="btn btn-info">Voltar</button>
+						<button type="button" onclick="location.href='/login'" class="btn btn-info">Voltar</button>
 					</form>
 				</div>
 			</div>

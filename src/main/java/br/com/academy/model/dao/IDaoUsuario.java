@@ -8,5 +8,5 @@ public interface IDaoUsuario extends JpaRepository<Usuario, Long>
 {
 	public Usuario findByEmail(String email);
 	
-	public Usuario findByNomeUsuarioAndSenha(String nomeUsuario, String senha);
+	public Usuario findByUsername(String username);
 }
